@@ -34,7 +34,10 @@ jobs:
     
     - name: Show cucumber json path
       run: cd target && ls
-      
+    - name: Post data to elastic search
+      run: |
+           cd target && curl -k --location --request POST 'https://qa-tap.mynisum.com:8083/GithubBranchesApp/post-circleci-actions' --header 'accept: */*' --form 'file=@"cucumber.json"' --form 'attachment=""' --form 'project="cirlcecitest123"' --form 'buildDate="1675862305125"' --form 'buildNumber="1"'
+   
       
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
